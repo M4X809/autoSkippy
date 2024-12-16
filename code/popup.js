@@ -20,23 +20,23 @@ function setPlatformUI(platform) {
 
   switch (platform) {
     case "netflix":
-      platformBadge.classList.add("hide");
-      platformIcon.src = "icons8-netflix-96.png";
+      // platformBadge.classList.add("hide");
+      platformIcon.src = "/assets/icons8-netflix-96.png";
       platformText.innerText = "Skip Intro, Recap & Next Episode";
       break;
     case "prime":
-      platformBadge.classList.add("hide");
-      platformIcon.src = "icons8-amazon-prime-video-96.png";
-      platformText.innerText = "Skip Intro & Recap";
+      // platformBadge.classList.add("hide");
+      platformIcon.src = "/assets/icons8-amazon-prime-video-96.png";
+      platformText.innerText = "Skip Intro, Recap & Next Episode";
       break;
     case "disney":
-      platformBadge.classList.remove("hide");
-      platformIcon.src = "icons8-disney-plus-96.png";
+      // platformBadge.classList.remove("hide");
+      platformIcon.src = "/assets/icons8-disney-plus-96.png";
       platformText.innerText = "Skip Intro & Next Episode";
       break;
     default:
-      platformBadge.classList.add("hide");
-      platformIcon.src = "icons8-no-96.png";
+      // platformBadge.classList.add("hide");
+      platformIcon.src = "/assets/icons8-no-96.png";
       platformText.innerText = "No supported platform detected";
   }
 }
@@ -48,8 +48,6 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     setPlatformUI("netflix");
   } else if (url.includes("amazon.de")) {
     setPlatformUI("prime");
-  } else if (url.includes("crave.ca")) {
-    setPlatformUI("crave");
   } else if (url.includes("disneyplus.com")) {
     setPlatformUI("disney");
   } else {
@@ -60,19 +58,28 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
 toggleSwitch.addEventListener("change", () => {
   if (toggleSwitch.checked) {
     chrome.storage.sync.set({ extensionEnabled: true });
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.scripting.executeScript({
-        target: { tabId: tabs[0].id },
-        files: ["script.js"],
-      });
-    });
   } else {
     chrome.storage.sync.set({ extensionEnabled: false });
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.scripting.executeScript({
-        target: { tabId: tabs[0].id },
-        function: stopSkipIntro,
-      });
-    });
+    // chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    //   chrome.scripting
+    //     .executeScript({
+    //       target: { tabId: tabs[0].id },
+    //       func: () => {
+    //         if (window.stopSkipIntro) {
+    //           window.stopSkipIntro();
+    //         }
+    //       },
+    //     })
+    //     .catch((err) => console.error("Script injection failed:", err));
+    // });
   }
 });
+
+// chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+//   chrome.scripting
+//     .executeScript({
+//       target: { tabId: tabs[0].id },
+//       files: ["script.js"],
+//     })
+//     .catch((err) => console.error("Script injection failed:", err));
+// });

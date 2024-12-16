@@ -3,215 +3,79 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AutoSkippy For Netflix</title>
-    <style>
-      /* General styles */
-      @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-      body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(to bottom right, #8e2de2, #8e2de2); /* Gradient background */
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 240px;
-        font-family: "Poppins", sans-serif;
-        font-weight: 400;
-        font-style: normal;
-      }
-
-      /* Hide element */
-      .hide {
-        display: none;
-      }
-
-      .toggle-button-cover {
-        display: table-cell;
-        position: relative;
-        width: 220px;
-        height: 220px;
-        box-sizing: border-box;
-      }
-
-      .button-cover {
-        height: 100px;
-        margin: 20px;
-        background-color: #fff;
-        box-shadow: 0 10px 20px -8px #c5d6d6;
-        border-radius: 4px;
-        display: flex;
-        flex-direction: column;
-        justify-content: start;
-        align-items: center;
-      }
-
-      .button-cover:before {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        color: #d7e3e3;
-        font-size: 12px;
-        line-height: 1;
-        padding: 5px;
-      }
-
-      .button-cover,
-      .knobs,
-      .layer {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-      }
-
-      .button {
-        position: relative;
-        top: 15%;
-        width: 74px;
-        height: 36px;
-        margin: -20px auto 0 auto;
-        overflow: hidden;
-      }
-
-      .button.r,
-      .button.r .layer {
-        border-radius: 100px;
-      }
-      .checkbox {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        opacity: 0;
-        cursor: pointer;
-        z-index: 3;
-      }
-
-      .knobs {
-        z-index: 2;
-      }
-
-      .layer {
-        width: 100%;
-        background-color: #ebf7fc;
-        transition: 0.3s ease all;
-        z-index: 1;
-      }
-      /* Button 3 */
-      #button-3 .knobs:before {
-        content: "OFF";
-        position: absolute;
-        top: 4px;
-        left: 4px;
-        width: 20px;
-        height: 10px;
-        color: #fff;
-        font-size: 10px;
-        font-weight: bold;
-        text-align: center;
-        line-height: 1;
-        padding: 9px 4px;
-        background-color: #f44336;
-        border-radius: 50%;
-        transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
-      }
-
-      #button-3 .checkbox:active + .knobs:before {
-        width: 46px;
-        border-radius: 100px;
-      }
-
-      #button-3 .checkbox:checked:active + .knobs:before {
-        margin-left: -26px;
-      }
-
-      #button-3 .checkbox:checked + .knobs:before {
-        content: "ON";
-        left: 42px;
-        background-color: #5cb85c;
-      }
-
-      #button-3 .checkbox:checked ~ .layer {
-        background-color: #fcebeb;
-      }
-      .footer {
-        text-align: center;
-        font-size: 10px;
-        color: #ffffff;
-        position: absolute;
-        bottom: 5px;
-        margin-left: 0;
-        margin-right: 0;
-        left: 0;
-        right: 0;
-      }
-
-      .footer p {
-        margin: 0;
-      }
-
-      .footer a {
-        color: #f5b342;
-        text-decoration: none;
-      }
-
-      .footer a:hover {
-        text-decoration: underline;
-      }
-      #platform-info {
-        position: relative;
-        margin: auto;
-        width: 180px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 15px;
-        background-color: #fff;
-        color: black;
-        border-radius: 4px;
-        font-weight: bold;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        box-shadow: 0 10px 20px -8px #c5d6d6;
-      }
-      .badge {
-        position: absolute;
-        top: 0;
-        right: 0;
-        background-color: #f5b342;
-        color: white;
-        padding: 5px;
-        border-radius: 4px;
-        font-size: 10px;
-      }
-    </style>
+    <link href="./output.css" rel="stylesheet" />
+    <title>T.E.T.W.</title>
+    <link rel="icon" href="assets/skip-icon-32.png" />
   </head>
-  <body>
-    <div class="toggle-button-cover">
-      <div class="button-cover">
-        <h3 style="margin: 15px 0px">AutoSkippy</h3>
-        <div class="button r" id="button-3">
-          <input id="extension-toggle" type="checkbox" class="checkbox" />
-          <div class="knobs"></div>
-          <div class="layer"></div>
-        </div>
+  <body class="bg-transparent">
+    <div
+      class="container bg-[#0D1117] border-2 border-black w-[250px] h-auto text-white p-5"
+    >
+      <div class="">
+        <h3 class="text-center text-2xl font-bold">T.E.T.W.</h3>
+        <p class="text-center text-xs text-gray-400 w-full">
+          <strong>T</strong>ime <strong>E</strong>fficient <strong>T</strong>ime
+          <strong>W</strong>aste
+        </p>
+        <!-- <div class="relative inline-flex items-center">
+          <input type="checkbox" id="extension-toggle" class="peer sr-only" />
+          <label for="extension-toggle" class="relative flex h-8 w-14 cursor-pointer items-center rounded-full bg-gray-300 px-0.5 transition-colors duration-300 ease-in-out peer-checked:bg-[#f5b342]">
+            <span class="absolute left-1 h-6 w-6 rounded-full bg-white shadow-md transform transition-transform duration-300 ease-in-out peer-checked:translate-x-6"></span>
+          </label>
+        </div> -->
+        <label class="inline-flex items-center mb-5 cursor-pointer my-2">
+          <input
+            type="checkbox"
+            id="extension-toggle"
+            value=""
+            class="sr-only peer"
+          />
+          <div
+            class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-transparent rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-4 after:h-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+          ></div>
+          <label
+            for="extension-toggle"
+            class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >Enable Auto Skip</label
+          >
+        </label>
       </div>
-      <div class="footer">
-        <div id="platform-info">
-          <img id="platform-icon" src="" alt="Platform Icon" style="width: 20px; height: 20px" />
-          <span id="platform-text">No actions available</span>
-          <div id="platform-badge" class="badge hide">In Progress</div>
+      <div id="platform-info" class="text-center">
+        <img
+          id="platform-icon"
+          src="https://max809.de/api/icon/⏩"
+          alt="Platform Icon"
+          class="aspect-square w-[3rem] max-w-[3rem] place-self-center"
+        />
+        <span id="platform-text">No actions available</span>
+        <div id="platform-badge" class="hidden">In Progress</div>
+      </div>
+      <footer
+        class="rounded-lg shadow mt-5 place-self-center text-sm font-medium text-gray-500 dark:text-gray-400"
+      >
+        <!-- <div
+          class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0"
+        > -->
+        <div class="text-center">Version 1.0.1</div>
+        <div class="text-center">
+          Made with ❤️ by
+          <a
+            href="https://github.com/max809"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:underline"
+            >max809</a
+          >
         </div>
-        <p>Version 2.0.12</p>
+        <!-- </div> -->
+      </footer>
+      <!-- <div class="footer">
+        <p>Version 1.0.0</p>
         <p>
           Made with ❤️ & ☕ by
-          <a href="https://x.com/ImtiazRaqib" target="_blank" rel="noopener noreferrer"> Imtiaz Raqib </a>
+          <a href="https://github.com/max809" target="_blank" rel="noopener noreferrer"> max809 </a>
         </p>
-      </div>
+      </div> -->
     </div>
 
     <script src="popup.js"></script>

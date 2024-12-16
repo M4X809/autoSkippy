@@ -1,40 +1,47 @@
 {
   "$schema": "https://json.schemastore.org/chrome-manifest",
-  "name": "AutoSkippy | Skip Intros, Ads, Recaps & More",
-  "version": "2.0.12",
-  "description": "Automatically skip intros, ads, recaps and next episode in Netflix, YouTube, Prime Video, Disney+, Crave and more.",
+  "name": "T.E.T.W. | (Time Efficient Time Waste)",
+  "version": "1.0.0",
+  "description": "Automatically skip intros, ads, recaps and next episode in Netflix, Prime Video, Disney+",
   "manifest_version": 3,
   "browser_specific_settings": {
     "gecko": {
-      "id": "autoskippy@raqib.tech"
+      "id": "tetw@max809.de"
     }
   },
-  "author": "Imtiaz Raqib",
+  "author": "max809",
   "icons": {
-    "16": "autoskippy_16.png",
-    "32": "autoskippy_32.png",
-    "48": "autoskippy_48.png",
-    "128": "autoskippy_128.png"
+    "32": "/assets/skip-icon-32.png",
+    "128": "/assets/skip-icon-128.png"
   },
   "permissions": ["activeTab", "scripting", "storage"],
   "action": {
     "default_popup": "index.html",
-    "default_title": "AutoSkippy",
+    "default_title": "T.E.T.W.",
     "default_icon": {
-      "16": "autoskippy_16.png",
-      "32": "autoskippy_32.png",
-      "48": "autoskippy_48.png",
-      "128": "autoskippy_128.png"
+      "32": "/assets/skip-icon-32.png",
+      "128": "/assets/skip-icon-128.png"
     }
   },
   "content_scripts": [
     {
       "matches": [
         "https://www.netflix.com/*",
-        "https://www.amazon.de//*",
+        "https://www.amazon.de/*",
         "https://www.disneyplus.com/*"
       ],
-      "js": ["script.js"]
+      "js": ["script.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["script.js"],
+      "matches": [
+        "https://www.netflix.com/*",
+        "https://www.amazon.de/*",
+        "https://www.disneyplus.com/*"
+      ]
     }
   ]
 }
