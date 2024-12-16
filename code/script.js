@@ -1,12 +1,12 @@
 let interval;
 
-browser.storage.sync.get(["extensionEnabled"], function (result) {
+chrome.storage.sync.get(["extensionEnabled"], (result) => {
   if (result.extensionEnabled) {
     startSkipIntro();
   }
 });
 
-browser.storage.onChanged.addListener(function (changes, namespace) {
+chrome.storage.onChanged.addListener((changes, namespace) => {
   if (changes.extensionEnabled) {
     if (changes.extensionEnabled.newValue) {
       startSkipIntro();
@@ -21,15 +21,30 @@ function startSkipIntro() {
 
   console.log("Starting skip intro/ads interval...");
   interval = setInterval(() => {
-    const netflixSkipButton = document.querySelector('button[data-uia="player-skip-intro"]');
-    const netflixNextEpisodeButton = document.querySelector('button[data-uia="next-episode-seamless-button"]');
-    const netflixSkipRecapButton = document.querySelector('button[data-uia="player-skip-recap"]');
-    const youtubeSkipAdButton = document.querySelector(".ytp-skip-ad-button");
-    const primeSkipButton = document.querySelector(".atvwebplayersdk-skipelement-button");
-    const craveSkipIntroButton = document.querySelector('button[aria-label="Skip Intro"]');
-    const craveNextEpisodeButton = document.querySelector('button[aria-label="Play next content"]');
-    const disneySkipIntroButton = document.querySelector('button[data-testid="skip-credits"]');
-    const disneyNextEpisodeButton = document.querySelector('button[data-testid="next-episode-button"]');
+    const netflixSkipButton = document.querySelector(
+      'button[data-uia="player-skip-intro"]'
+    );
+    const netflixNextEpisodeButton = document.querySelector(
+      'button[data-uia="next-episode-seamless-button"]'
+    );
+    const netflixSkipRecapButton = document.querySelector(
+      'button[data-uia="player-skip-recap"]'
+    );
+    const primeSkipButton = document.querySelector(
+      ".atvwebplayersdk-skipelement-button"
+    );
+    const craveSkipIntroButton = document.querySelector(
+      'button[aria-label="Skip Intro"]'
+    );
+    const craveNextEpisodeButton = document.querySelector(
+      'button[aria-label="Play next content"]'
+    );
+    const disneySkipIntroButton = document.querySelector(
+      'button[data-testid="skip-credits"]'
+    );
+    const disneyNextEpisodeButton = document.querySelector(
+      'button[data-testid="next-episode-button"]'
+    );
 
     if (netflixSkipButton) {
       netflixSkipButton.click();
@@ -37,14 +52,8 @@ function startSkipIntro() {
       netflixNextEpisodeButton.click();
     } else if (netflixSkipRecapButton) {
       netflixSkipRecapButton.click();
-    } else if (youtubeSkipAdButton && youtubeSkipAdButton.style.display !== "none") {
-      youtubeSkipAdButton.click();
     } else if (primeSkipButton) {
       primeSkipButton.click();
-    } else if (craveSkipIntroButton) {
-      craveSkipIntroButton.click();
-    } else if (craveNextEpisodeButton) {
-      craveNextEpisodeButton.click();
     } else if (disneySkipIntroButton) {
       disneySkipIntroButton.click();
     } else if (disneyNextEpisodeButton) {
@@ -55,7 +64,7 @@ function startSkipIntro() {
   }, 1000);
 }
 
-function stopSkipIntro() {
+const stopSkipIntro = () => {
   clearInterval(interval);
   interval = null;
-}
+};

@@ -1,14 +1,14 @@
-let toggleSwitch = document.getElementById("extension-toggle");
+const toggleSwitch = document.getElementById("extension-toggle");
 
 // Load the saved state
-browser.storage.sync
+chrome.storage.sync
   .get("extensionEnabled")
-  .then(function (result) {
+  .then((result) => {
     if (result.extensionEnabled !== undefined && result.extensionEnabled) {
       toggleSwitch.checked = true;
     }
   })
-  .catch(function (error) {
+  .catch((error) => {
     console.error("Error retrieving extension state:", error);
   });
 
@@ -24,25 +24,16 @@ function setPlatformUI(platform) {
       platformIcon.src = "icons8-netflix-96.png";
       platformText.innerText = "Skip Intro, Recap & Next Episode";
       break;
-    case "youtube":
-      platformBadge.classList.add("hide");
-      platformIcon.src = "icons8-youtube-96.png";
-      platformText.innerText = "Skip Ads";
-      break;
     case "prime":
       platformBadge.classList.add("hide");
       platformIcon.src = "icons8-amazon-prime-video-96.png";
       platformText.innerText = "Skip Intro & Recap";
       break;
-    case "crave":
-      platformBadge.classList.add("hide");
-      platformIcon.src = "icons8-crave-96.png";
-      platformText.innerText = "Skip Intro & Next Episode";
-      break;
     case "disney":
       platformBadge.classList.remove("hide");
       platformIcon.src = "icons8-disney-plus-96.png";
       platformText.innerText = "Skip Intro & Next Episode";
+      break;
     default:
       platformBadge.classList.add("hide");
       platformIcon.src = "icons8-no-96.png";
@@ -51,13 +42,11 @@ function setPlatformUI(platform) {
 }
 
 // Get the active tab's URL and set the platform UI
-chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-  let url = tabs[0].url;
+chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+  const url = tabs[0].url;
   if (url.includes("netflix.com")) {
     setPlatformUI("netflix");
-  } else if (url.includes("youtube.com")) {
-    setPlatformUI("youtube");
-  } else if (url.includes("primevideo.com")) {
+  } else if (url.includes("amazon.de")) {
     setPlatformUI("prime");
   } else if (url.includes("crave.ca")) {
     setPlatformUI("crave");
@@ -68,18 +57,18 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
   }
 });
 
-toggleSwitch.addEventListener("change", function () {
+toggleSwitch.addEventListener("change", () => {
   if (toggleSwitch.checked) {
     chrome.storage.sync.set({ extensionEnabled: true });
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       chrome.scripting.executeScript({
         target: { tabId: tabs[0].id },
-        files: ["script.js"], // Ensure the script is loaded
+        files: ["script.js"],
       });
     });
   } else {
     chrome.storage.sync.set({ extensionEnabled: false });
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       chrome.scripting.executeScript({
         target: { tabId: tabs[0].id },
         function: stopSkipIntro,

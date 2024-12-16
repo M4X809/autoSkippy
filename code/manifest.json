@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/chrome-manifest",
   "name": "AutoSkippy | Skip Intros, Ads, Recaps & More",
   "version": "2.0.12",
   "description": "Automatically skip intros, ads, recaps and next episode in Netflix, YouTube, Prime Video, Disney+, Crave and more.",
@@ -29,11 +30,9 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.netflix.com/*",
-        "*://*.youtube.com/*",
-        "*://*.primevideo.com/*",
-        "*://*.disneyplus.com/*",
-        "*://*.crave.ca/*"
+        "https://www.netflix.com/*",
+        "https://www.amazon.de//*",
+        "https://www.disneyplus.com/*"
       ],
       "js": ["script.js"]
     }
