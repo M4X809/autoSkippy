@@ -46,11 +46,11 @@
       const primeNextEpisodeButton = document.querySelector(
         ".atvwebplayersdk-nextupcard-button"
       );
-      const disneySkipIntroButton = document.querySelector(
-        'button[data-testid="skip-credits"]'
+      const disneySkipEpisodeButton = document.querySelector(
+        '.skip__button'
       );
       const disneyNextEpisodeButton = document.querySelector(
-        'button[data-testid="next-episode-button"]'
+        '[aria-label^="NEXT EPISODE IN"]'
       );
 
       const buttons = [
@@ -59,20 +59,20 @@
         netflixSkipRecapButton,
         primeSkipButton,
         primeNextEpisodeButton,
-        disneySkipIntroButton,
+        disneySkipEpisodeButton,
         disneyNextEpisodeButton,
       ];
 
       const buttonToClick = buttons.find((button) => button);
 
       if (buttonToClick) {
-        // console.log("Button found:", buttonToClick);
+        console.log("Button found:", buttonToClick);
         buttonToClick.click();
         stopSkipIntro();
         await waitMS(5000);
         startSkipIntro();
       } else {
-        // console.log("No actionable buttons found.");
+        console.log("No actionable buttons found.");
       }
     }, 1000);
   }
