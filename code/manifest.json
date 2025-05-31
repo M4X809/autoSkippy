@@ -1,47 +1,49 @@
 {
-  "$schema": "https://json.schemastore.org/chrome-manifest",
-  "name": "T.E.T.W. | (Time Efficient Time Waste)",
-  "version": "1.0.0",
-  "description": "Automatically skip intros, ads, recaps and next episode in Netflix, Prime Video, Disney+",
-  "manifest_version": 3,
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "tetw@max809.de"
-    }
-  },
-  "author": "max809",
-  "icons": {
-    "32": "/assets/skip-icon-32.png",
-    "128": "/assets/skip-icon-128.png"
-  },
-  "permissions": ["activeTab", "scripting", "storage"],
-  "action": {
-    "default_popup": "index.html",
-    "default_title": "T.E.T.W.",
-    "default_icon": {
-      "32": "/assets/skip-icon-32.png",
-      "128": "/assets/skip-icon-128.png"
-    }
-  },
-  "content_scripts": [
-    {
-      "matches": [
-        "https://www.netflix.com/*",
-        "https://www.amazon.de/*",
-        "https://www.disneyplus.com/*"
-      ],
-      "js": ["script.js"],
-      "run_at": "document_start"
-    }
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": ["script.js"],
-      "matches": [
-        "https://www.netflix.com/*",
-        "https://www.amazon.de/*",
-        "https://www.disneyplus.com/*"
-      ]
-    }
-  ]
+	"$schema": "https://json.schemastore.org/chrome-manifest",
+	"name": "T.E.T.W. | (Time Efficient Time Waste)",
+	"version": "1.0.0",
+	"description": "Automatically skip intros, ads, recaps and next episode in Netflix, Prime Video, Disney+",
+	"manifest_version": 3,
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "tetw@max809.de"
+		}
+	},
+	"author": "max809",
+	"icons": {
+		"32": "/assets/skip-icon-32.png",
+		"128": "/assets/skip-icon-128.png"
+	},
+	"permissions": ["activeTab", "scripting", "storage"],
+	"action": {
+		"default_popup": "index.html",
+		"default_title": "T.E.T.W.",
+		"default_icon": {
+			"32": "/assets/skip-icon-32.png",
+			"128": "/assets/skip-icon-128.png"
+		}
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://www.netflix.com/*",
+				"https://www.amazon.de/*",
+				"https://www.disneyplus.com/*",
+				"https://www.wowtv.de/*"
+			],
+			"js": ["script.js"],
+			"run_at": "document_start"
+		}
+	],
+	"web_accessible_resources": [
+		{
+			"resources": ["script.js"],
+			"matches": [
+				"https://www.netflix.com/*",
+				"https://www.amazon.de/*",
+				"https://www.disneyplus.com/*",
+				"https://www.wowtv.de/*"
+			]
+		}
+	]
 }
